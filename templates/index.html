@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Private Wall</title>
+</head>
+<body>
+    <div class="main_wrapper">
+        <div class="header">
+                <h1 class='reg_name'>PrivateWall</h1>                
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message == 'already_exists' %}
+                            <p class='error_text'>User Already Exists. Please Try Logging In.</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <h1 class="welcome_msg">Sign Up Now!</h1>
+            <div class="body">                
+                <div class="registration">
+                <form action="/validate" method="post" class="reg_form">
+                <p ><h2 class="reg_here">Register Here!</h2></p><br><br>
+                <p class="reg_bxtitle">First Name:</p>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message == 'fname_error' %}
+                                <p class='error_text'>Please Enter A First Name.</p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <p ><input type='text' name="fname" class="reg_box" value={{session['fname']}}></p>
+                <p class="reg_bxtitle">Last Name:</p>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message == 'lname_error': %}
+                            <p class='error_text'>Please Enter A Last Name.</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+                <p ><input type='text' name="lname" class="reg_box" value={{session['lname']}}></p>
+                <p class="reg_bxtitle">Email:</p>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message == 'email_error': %}
+                            <p class='error_text'>Please Enter A Valid Email Address.</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+                <p ><input type='text' name="email" class="reg_box" value={{session['email']}}></p>
+                <p class="reg_bxtitle">Password:</p>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message == 'format_error': %}
+                            <p class='error_text'>Password Must Include At Least One Uppercase Letter One Lowercase Letter, One Number, And One Special Character (@$!%*#?&), and be between 8 and 15 characters in length.</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+                <p ><input type='password' name="pass_it" class="reg_box"></p>
+                <p class="reg_bxtitle">Confirm Password:</p>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message == 'match_error': %}
+                            <p class='error_text'>Passwords Do Not Match</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+                <p ><input type='password' name="times_two" class="reg_box"></p>
+                <P><input type='submit' name='reg_button' value="Register" class='reg_button'></P>
+                <p><input type='hidden' name='form_side' value="register"></p>
+                </form>
+            
+            </div>
+            <div class='login'>
+                    <p ><h2 class="log_here">Login Here!</h2></p><br><br>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message == 'login_no_dice' %}
+                                <p class='error_text'>We Are Unable To Log You In At This Time.</p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <form action="/validate" method="post" class="log_form">
+                    <p class="log_bxtitle">Email:</p>          
+                    <p ><input type='text' name="log_email" class="log_box"></p>
+                    <p class="log_bxtitle">Password:</p>                    
+                    <p ><input type='password' name="log_password" class="log_box"></p>
+                    <P><input type='submit' name='reg_button' value="Login" class='reg_button'></P>
+                    <p><input type='hidden' name='form_side' value="login"></p>
+                </form>
+                </div>
+
+            </div> 
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">   
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+  <div class="wall_wrapper">
+    <div class="wall_header">
+      <h1 class="wall_title">Welcome To Private Wall</h1>
+      <div class="wall_headRight">                
+      Welcome, {{session['user']['first_name']}}!      
+      <a href="/logout" class="wall_logout">Log Out</a>
+    </div>
+    </div>
+    <div class="wall_left_wrapper">
+      <div class="wall_left_header">
+        <h2 class="msg_notification">{{msg_count}} Message(s) for You</h3>
+      </div>
+      <div class="wall_left_feed">
+          <!-- {{query}} -->
+          <!-- {{session['user']}} -->
+          {% for msg in query %}
+          <p class="got_messages">{{msg['users2.first_name']}} Said:</p>
+          <p class="msg_content">{{msg['content']}}</p>          
+          {% endfor %}
+      </div>
+    </div>
+    <div class="wall_right_wrapper">
+      <div class="wall_right_header">
+        <h2 class="msg_notification">Send Messages</h2>        
+      </div>
+      <div class = "wall_right_feed">               
+        {% for current_user in active %}
+        {% if not current_user['first_name'] == session['user']['first_name']: %}       
+        <form action='/submit_msg' method="post">
+        <p class="active_users">{{current_user['first_name']}} <textarea name="msg_txt" class="msg_txt"></textarea><input type='hidden' name="directed_at" value="{{current_user['id']}}"><input type='submit' class="send_new_msg", value="Send"></p>
+        <br><br>        
+      </form>
+        {% endif %}
+        {% endfor %}        
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

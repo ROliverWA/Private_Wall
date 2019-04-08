@@ -1,0 +1,260 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.main_wrapper {
+    width: 100%;
+    height: 675px;
+    padding: 20px;
+    /* background-color:forestgreen; */
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    /* background-color: blue; */
+}
+
+.welcome_msg {
+    margin-top: 20px;    
+    text-shadow: 2px 2px 3px rgb(79, 79, 235);
+    color: red;
+    
+}
+
+.body {
+    width: 100%;
+    height: 595px;
+    /* background-color: goldenrod; */
+    display: inline-block;
+    vertical-align: top;
+}
+
+.registration {
+    display: inline-block;
+    vertical-align: top;
+    /* background-color: red; */
+    height: 595px;
+    width: 50%;
+}
+.login {
+    display: inline-block;
+    vertical-align: top;
+    /* background-color: purple; */
+    height: 595px;
+    width: 49%;
+}
+
+.reg_here {
+    margin-top: 10px;
+    text-shadow: 2px 2px 3px rgb(79, 79, 235);    
+    color: red;
+    
+}
+
+.reg_bxtitle {
+    margin-top: 3px;
+    text-shadow: 1px 1px 2px red;
+    margin-bottom: 15px;
+    color: rgb(79, 79, 235);
+    
+}
+
+.reg_box {
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding-left: 5px;
+    width: 200px;
+}
+
+.reg_button {
+    width: 75px;
+    height: 30px;
+    margin-top: 5px;
+    background-color: greenyellow;
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: 0px;
+}
+
+.error_text {
+    color: red;
+    font-size: 8pt;
+}
+
+.log_bxtitle {
+    margin-top: 3px;
+    text-shadow: 1px 1px 2px green;
+    margin-bottom: 15px;
+    display: inline-block;
+    vertical-align: top;
+    color: greenyellow;
+}
+
+.log_box {
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding-left: 5px;
+    width: 200px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.log_here {
+    margin-top: 10px;
+    text-shadow: 2px 2px 3px green;    
+    color: greenyellow;
+    
+}
+
+.reg_name {
+    margin-top: 10px;
+    text-shadow: 2px 2px 3px lime;    
+    color: magenta;
+    font-size: 42pt;
+    margin-left: 25%;
+}
+
+.wall_wrapper {
+    width: 100%;
+    height: 800px;    
+    /* background-color: magenta; */
+    border: 2px solid black;
+}
+
+.wall_header {
+    width: 100%;
+    height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    border-bottom: 2px solid black;
+    /* background-color: goldenrod; */
+}
+
+.wall_title, .wall_logout, .welcome_user, .wall_headRight{
+    display: inline-block;
+}
+
+.wall_headRight {
+    width: 40%;
+    height: 25px;
+    /* background-color: blue; */
+    vertical-align: top;
+    text-align: right;
+    margin-left: 320px;
+    padding-top: 25px;
+    font-size: 24pt;
+    margin-top: -10px;
+    text-shadow: 2px 2px 3px lime;    
+    color: magenta;
+}
+
+.wall_headRight a {
+    font-size: initial;
+}
+
+.wall_left_wrapper {
+    width: 49%;
+    height: 750px;
+    /* background-color: gray; */
+    border-right: 3px solid black;
+    display: inline-block;
+    vertical-align: top;
+
+}
+
+.wall_left_header {
+    width: 100%;
+    height: 125px;
+    /* background-color: red; */
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wall_left_feed {
+    width: 88%;
+    height: 575px;
+    /* background-color: goldenrod; */
+    display: inline-block;
+    vertical-align: top;
+}
+
+.msg_notification {
+    margin-left: 100px;
+    margin-top: 50px;
+    text-decoration: underline;
+    text-shadow: 2px 2px 3px lime;    
+    color: magenta;
+}
+.wall_right_wrapper {
+    width: 49%;
+    height: 750px;
+    /* background-color: gray; */
+    display: inline-block;
+    vertical-align: top;
+
+}
+
+.wall_right_header {
+    width: 100%;
+    height: 125px;
+    /* background-color: royalblue; */
+    display: inline-block;
+    vertical-align: top;
+}
+
+.wall_right_feed {
+    width: 90%;
+    height: 575px;
+    /* background-color: mediumaquamarine; */
+    display: inline-block;
+    /* vertical-align: top; */
+}
+
+.wall_title {
+    text-shadow: 2px 2px 3px lime;    
+    color: magenta;
+    font-size: 42pt;
+    margin-top: -5px;
+   
+}
+
+.active_users {
+    margin-left: 50px;
+    text-shadow: 2px 2px 3px lime;    
+    color: magenta;
+}
+
+textarea {
+   /* background-color: magenta; */
+   height: 100px;
+   width: 400px;
+   vertical-align: top;
+   margin-left: 35px;
+   resize: none;
+}
+.send_new_msg {
+    margin-left: 40px;
+    margin-top: 40px;
+    background-color: greenyellow;
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border: 0px;
+    width: 75px;
+    height: 25px;
+}
+
+.got_messages {
+    
+    text-shadow: 2px 2px 3px lime;    
+    color: magenta;
+    margin-left: 50px;
+}
+
+.msg_content {
+    text-shadow: 2px 2px 3px magenta;    
+    color: forestgreen;
+    margin-left: 50px;
+    margin-top: 5px;
+}
