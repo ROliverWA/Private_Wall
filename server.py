@@ -1,9 +1,11 @@
 from flask import Flask, render_template, redirect, request, session, flash, url_for
 from mysqlconnection import connectToMySQL
 import re
-from flask_bcrypt import Bcrypt        
+from flask_bcrypt import Bcrypt
+from flask_socketio import SocketIO, emit
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
+socketio = SocketIO(app)
 app.secret_key = 'theansweris42'
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{3}$') 
 PW_REGEX = re.compile(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$")
@@ -110,7 +112,7 @@ def get_from_db():
     query = "SELECT * FROM users"   
     active_users = mysql.query_db(query)
     mysql = connectToMySQL('private_wall')
-    query = "SELECT users.first_name, users2.first_name, messages.content, messages.created_at FROM users JOIN messages ON users.id = messages.to_id JOIN users AS users2 on messages.from_id = users2.id WHERE messages.to_id = %(uzr)s;"
+    query = "SELECT users.first_name, users2.first_name, messages.content, messages.created_at, messages.id FROM users JOIN messages ON users.id = messages.to_id JOIN users AS users2 on messages.from_id = users2.id WHERE messages.to_id = %(uzr)s;"
     data = {
         'uzr': session['user']['id']
     }
@@ -126,20 +128,27 @@ def success():
     
 @app.route('/submit_msg', methods=["POST"])
 def submit_new_msg():
-    print("made it")    
+    if len(request.form['msg_txt']) > 3:       
+        mysql = connectToMySQL("private_wall")
+        query = "INSERT INTO messages (content, from_id, to_id, created_at) VALUES (%(ct)s, %(sf)s, %(id)s, NOW())"
+        data = {
+            "ct": request.form['msg_txt'],
+            "sf": session['user']['id'],
+            "id": request.form['directed_at']
+        }
+        msg_loc = mysql.query_db(query, data)
+        return redirect('/get_info')
+    
+    
+@app.route('/remove_it', methods=['POST'])
+def remove_message():
     mysql = connectToMySQL("private_wall")
-    query = "INSERT INTO messages (content, from_id, to_id, created_at) VALUES (%(ct)s, %(sf)s, %(id)s, NOW())"
+    query = "DELETE FROM messages WHERE id= %(id)s"
     data = {
-        "ct": request.form['msg_txt'],
-        "sf": session['user']['id'],
-        "id": request.form['directed_at']
+        "id": request.form['msg_id']
     }
-    msg_loc = mysql.query_db(query, data)
-    return redirect('/')
-    
-    
-    
-    
+    results = mysql.query_db(query, data)
+    return redirect('get_info')
     
     
 
